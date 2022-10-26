@@ -1,0 +1,33 @@
+GET http://localhost:3000/api/posts
+
+###
+
+GET http://localhost:3000/api/posts/6358f6cc2d842ffb28c40af6
+
+###
+
+POST http://localhost:3000/api/posts
+Content-Type: application/json
+
+{
+    "title": "Eclipsa de Soare, cel mai important fenomen astronomic al anului",
+    "content": "O eclipsă parţială de Soare este vizibilă marți, în condiţii bune (dacă este senin) şi din România. În România, Soarele va fi acoperit în proporţie de 44%, în nord-estul extrem, şi 32% în vestul ţării, potrivit AstroBârlad.",
+    "author": "G4Media.ro",
+    "tags": "https://www.g4media.ro/video-eclipsa-de-soare-cel-mai-important-fenomen-astronomic-al-anului-vizibil-din-romania-soarele-acoperit-in-proportie-de-44.html"
+}
+
+###
+
+DELETE http://localhost:3000/api/posts/6358f6cc2d842ffb28c40af6
+
+###
+
+PUT http://localhost:3000/api/posts/6358f6f82d842ffb28c40afa
+Content-Type: application/json
+
+{
+    "title": "test2",
+    "content": "test",
+    "author": "test",
+    "tags": "test"
+}
