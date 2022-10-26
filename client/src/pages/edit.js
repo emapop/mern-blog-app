@@ -13,8 +13,8 @@ const Edit = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const { data } = await http.get(`/api/posts/${postId}`);
-      reset(data.data.posts);
+      const { data } = await http.get(`/${postId}`);
+      reset(data.data.post);
     }
     fetchData();
   }, [postId, reset]);
@@ -23,11 +23,11 @@ const Edit = () => {
     const payload = {
       title,
       author,
-      tags: tags.split(',').map((tag) => tag.trim()),
+      tags,
       content,
     };
-    await http.put(`/api/posts/${postId}`, { data: payload });
-    navigate(`/posts/${postId}`);
+    await http.put(`/${postId}`, { data: payload });
+    navigate(`/`);
   };
   
   return (

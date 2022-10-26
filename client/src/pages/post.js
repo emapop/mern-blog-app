@@ -14,14 +14,15 @@ const Post = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const { data } = await http.get(`/api/posts/${postId}`);
-      setPost(data.data.posts);
+      const { data } = await http.get(`/${postId}`);
+      console.log(await http.get(`/${postId}`))
+      setPost(data.data.post);
     }
     fetchData();
   }, [postId]);
   const deletePost = async () => {
     //await axios.delete('http://localhost:4000/api/posts/6358ffb898f7f3f703cc2e5').catch((error) => console.log("Error: ", error));;
-    await axios.delete(`/api/posts/${postId}`);
+    await http.delete(`/${postId}`);
     //await http.delete('/api/posts/:id', { params:{ id:'6358ffb898f7f3f703cc2e50'}});
    //await http.delete('/api/posts/6358ffb898f7f3f703cc2e50');
     navigate('/');
@@ -33,7 +34,7 @@ const Post = () => {
       <Container className="my-5 text-justified" style={{ maxWidth: '800px' }}>
         <h1>{post.title}</h1>
         <div className="text-secondary mb-4">{formatDate(post.createdAt)}</div>
-        {post.tags?.map((tag) => <span>{tag} </span>)}
+        {/* {post.tags?.map((tag) => <span>{tag} </span>)} */}
         <div className="h4 mt-5">{post.content}</div>
         <div className="text-secondary mb-5">- {post.author}</div>
         <div className="mb-5">

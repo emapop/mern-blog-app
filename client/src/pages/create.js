@@ -13,10 +13,10 @@ const Post = () => {
     const payload = {
       title,
       author,
-      tags: tags.split(',').map((tag) => tag.trim()),
+      tags,
       content,
     };
-    await http.post('/api/posts', { data: payload });
+    await http.post('/', { data: payload });
     navigate('/');
   };
   

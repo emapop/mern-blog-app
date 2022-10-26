@@ -10,7 +10,7 @@ const http = (
   },
 ) => {
   return axios({
-    url: domain,
+    url: domain + url,
     method: method,
     data,
   });
