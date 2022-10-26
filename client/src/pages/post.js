@@ -4,6 +4,8 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import http from '../lib/http';
 import formatDate from '../lib/formatDate';
+import axios from 'axios';
+
 
 const Post = () => {
   const { id: postId } = useParams();
@@ -13,16 +15,18 @@ const Post = () => {
   useEffect(() => {
     async function fetchData() {
       const { data } = await http.get(`/api/posts/${postId}`);
-      setPost(data.data.post);
+      setPost(data.data.posts);
     }
     fetchData();
   }, [postId]);
-
   const deletePost = async () => {
-    await http.delete(`/api/posts/${postId}`);
+    //await axios.delete('http://localhost:4000/api/posts/6358ffb898f7f3f703cc2e5').catch((error) => console.log("Error: ", error));;
+    await axios.delete(`/api/posts/${postId}`);
+    //await http.delete('/api/posts/:id', { params:{ id:'6358ffb898f7f3f703cc2e50'}});
+   //await http.delete('/api/posts/6358ffb898f7f3f703cc2e50');
     navigate('/');
   }
-  
+  //console.log(http.delete(`/api/posts/${postId}`))
   
   return (
     <>

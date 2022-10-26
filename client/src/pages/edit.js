@@ -14,7 +14,7 @@ const Edit = () => {
   useEffect(() => {
     async function fetchData() {
       const { data } = await http.get(`/api/posts/${postId}`);
-      reset(data.data.post);
+      reset(data.data.posts);
     }
     fetchData();
   }, [postId, reset]);

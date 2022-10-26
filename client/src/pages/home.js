@@ -5,30 +5,24 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Image from 'react-bootstrap/Image';
 import http from '../lib/http';
 import formatDate from '../lib/formatDate';
-import methods from '../lib/http';
-import axios from 'axios';
+
 
 const Home = () => {
   const [posts, setPosts] = useState([]); 
   useEffect(() => {
-     /* function fetchData() {
-      console.log(methods.get());
-      const { data } = methods.get('/api/posts/').then(res => {
-        var blogs = res.data;
-        //console.log(blogs);
-      setPosts(blogs.posts);
-      });
-
+     async function fetchData() {
+      const { data } = await http.get('/api/posts/')
+      setPosts(data.data.posts);
     
 
     }
-    fetchData(); */
-     function result(){
-    const res = axios.get("http://localhost:3000/api/posts").then((response)=>{
+    fetchData();
+    /*  function result(){
+    const res = axios.get("http://localhost:4000/api/posts").then((response)=>{
       console.log(response)
     });
   console.log(res)
-} result()
+} result() */
   }, []);
   /* const datas =  http.get('/api/posts/').then(res => {
     var blogs = res.data.posts;
