@@ -51,6 +51,19 @@ router.post('/', async (req, res, next) => {
   });
 });
 
+router.post('/token', async (req, res, next) => {
+  const { token } = req.body;
+  const post = new Token({
+    token,
+  });
+  await post.save();
+  return res.status(201).json({
+    statusCode: 201,
+    message: 'Created post',
+    data: { post },
+  });
+});
+
 /* PUT post */
 router.put('/:id', async (req, res, next) => {
   const { title, author, content, tags } = req.body;
