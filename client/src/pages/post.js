@@ -28,7 +28,7 @@ const Post = () => {
   //console.log(http.delete(`/api/posts/${postId}`))
 
   var content = post.content;
-  var TokenizeWords = () => {
+  /* var TokenizeWords = () => {
     //var content = post.content;
     let tokenizer = content.replace(/[&\/\\#`,+()$~%.'":*!?<>{}]/g, '').split(" "); // Example: Character 'á' is U+00E1
     console.log(tokenizer);
@@ -41,10 +41,14 @@ const Post = () => {
 
     corpus.map(item => console.log(item))
 
-    /*  content.match(/\b[\w']+\b/g).map((item, index) => {
-      console.log(item);
-      return item;
-    }); */
+  } */
+
+  const TokenizeWords = async ({ token }) => {
+    const payload = {
+      token,
+    };
+     await http.post('/token', { data: payload });
+    navigate('/token');
   };
 
   return (
@@ -63,7 +67,6 @@ const Post = () => {
           >
             Edit
           </Link>
-
           <Button
             variant="warning"
             className=" btn btn-primary m-1"
@@ -72,7 +75,6 @@ const Post = () => {
           >
             Tokenize
           </Button>
-
           <Button
             variant="danger"
             className=" btn btn-primary m-1"

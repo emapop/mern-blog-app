@@ -16,22 +16,9 @@ const Home = () => {
       const { data } = await http.get('/')
       setPosts(data.data.posts);
     
-
     }
     fetchData();
-    /*  function result(){
-    const res = axios.get("http://localhost:4000/api/posts").then((response)=>{
-      console.log(response)
-    });
-  console.log(res)
-} result() */
   }, []);
-  /* const datas =  http.get('/api/posts/').then(res => {
-    var blogs = res.data.posts;
-    console.log(blogs);
-  });
-
-  console.log(datas) */
 
   
   return (
