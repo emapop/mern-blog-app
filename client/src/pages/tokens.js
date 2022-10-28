@@ -13,6 +13,7 @@ function Tokens(){
         console.log(token)
       }, []); */
       useEffect(() => {
+        
         async function fetchData() {
          const { data } = await http.get('/token')
          setToken(data.data.token);

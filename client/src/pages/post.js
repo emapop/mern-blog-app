@@ -4,11 +4,14 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import http from "../lib/http";
 import formatDate from "../lib/formatDate";
+import Form from 'react-bootstrap/Form';
+import { useForm } from 'react-hook-form';
 
 const Post = () => {
   const { id: postId } = useParams();
   const [post, setPost] = useState({});
   const navigate = useNavigate();
+  const { register, handleSubmit } = useForm();
 
   useEffect(() => {
     async function fetchData() {
@@ -44,12 +47,26 @@ const Post = () => {
   } */
 
   const TokenizeWords = async ({ token }) => {
-    const payload = {
-      token,
+    var tokenizer = token.replace(/[&\/\\#`,+()$~%.'":*!?<>{}]/g, '').split(" ")
+    var corpus = [];
+    for (let i = 0; i < tokenizer.length; i++) {
+      if (tokenizer[i] == "") continue;
+      else corpus.push(tokenizer[i].toLowerCase());
+    }
+    var items = ''
+    corpus.map((item) =>{items = item /* console.log(items) */})
+    
+    var payload = {
+      token: items
     };
      await http.post('/token', { data: payload });
-    navigate('/token');
+    //navigate('/token');
+      console.log(await http.post('/token', { data: payload }))
+    //console.log(items);
+    console.log(corpus);
   };
+
+  var number = post.content;
 
   return (
     <>
@@ -67,14 +84,21 @@ const Post = () => {
           >
             Edit
           </Link>
+          <Form onSubmit={handleSubmit(TokenizeWords)} className="my-5">
+          <Form.Group className="mb-3">
+          <Form.Label>Tokenize</Form.Label>
+          <Form.Control type="text" as="textarea" rows={5} /* defaultValue={number} */ placeholder="Enter token" {...register('token')}></Form.Control>
+        </Form.Group>
           <Button
             variant="warning"
             className=" btn btn-primary m-1"
             style={{ color: "white" }}
-            onClick={TokenizeWords}
-          >
+            //onClick={TokenizeWords}
+            type = "submit" /* {...register('token')} */
+          > 
             Tokenize
           </Button>
+          </Form>
           <Button
             variant="danger"
             className=" btn btn-primary m-1"
