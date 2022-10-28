@@ -14,7 +14,7 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/token', async (req, res, next) => {
-  const token = await Token.find().sort({ createdAt: 'desc' });
+  const token = await Token.find().sort({ token: 'desc' });
   return res.status(200).json({
     statusCode: 200,
     message: 'Fetched all posts',
@@ -52,16 +52,20 @@ router.post('/', async (req, res, next) => {
 });
 
 router.post('/token', async (req, res, next) => {
-  const { token } = req.body;
+  const request = req.body.token;
+  const tokenArray  = JSON.parse(request);
+  tokenArray.forEach(async (token) =>{
   const post = new Token({
     token,
   });
   await post.save();
+});
   return res.status(201).json({
     statusCode: 201,
     message: 'Created post',
-    data: { post },
+    data: { request },
   });
+  
 });
 
 /* PUT post */
