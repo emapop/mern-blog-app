@@ -1,12 +1,17 @@
-GET http://localhost:3000/api/posts
+GET http://localhost:4000/api/posts
 
 ###
 
-GET http://localhost:3000/api/posts/6358f6cc2d842ffb28c40af6
+###
+
+GET http://localhost:4000/api/posts/token
+
+
+GET http://localhost:4000/api/posts/6358f6cc2d842ffb28c40af6
 
 ###
 
-POST http://localhost:3000/api/posts
+POST http://localhost:4000/api/posts
 Content-Type: application/json
 
 {
@@ -18,11 +23,21 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3000/api/posts/6358f6cc2d842ffb28c40af6
+POST http://localhost:4000/api/posts/token
+Content-Type: application/json
+
+{
+    "token": "remarcabila"
+    
+}
 
 ###
 
-PUT http://localhost:3000/api/posts/6358f6f82d842ffb28c40afa
+DELETE http://localhost:4000/api/posts/6358f6cc2d842ffb28c40af6
+
+###
+
+PUT http://localhost:4000/api/posts/6358f6f82d842ffb28c40afa
 Content-Type: application/json
 
 {

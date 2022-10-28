@@ -22,7 +22,7 @@ function Tokens(){
      }, []);
      console.log(token)
      if(token){
-        return <p>Sorry, the list is empty.</p>;
+        return <p>Success. You can press f12 for your results</p>;
       } else{
     return(
         <div>

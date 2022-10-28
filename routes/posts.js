@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Post = require('../models/post');
+const Token = require('../models/Token')
 
 /* GET posts */
 router.get('/', async (req, res, next) => {
@@ -9,6 +10,15 @@ router.get('/', async (req, res, next) => {
     statusCode: 200,
     message: 'Fetched all posts',
     data: { posts },
+  });
+});
+
+router.get('/token', async (req, res, next) => {
+  const token = await Token.find().sort({ createdAt: 'desc' });
+  return res.status(200).json({
+    statusCode: 200,
+    message: 'Fetched all posts',
+    data: { token },
   });
 });
 
@@ -32,6 +42,19 @@ router.post('/', async (req, res, next) => {
     author,
     content,
     tags,
+  });
+  await post.save();
+  return res.status(201).json({
+    statusCode: 201,
+    message: 'Created post',
+    data: { post },
+  });
+});
+
+router.post('/token', async (req, res, next) => {
+  const { token } = req.body;
+  const post = new Token({
+    token,
   });
   await post.save();
   return res.status(201).json({

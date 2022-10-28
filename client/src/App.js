@@ -7,6 +7,7 @@ import Edit from './pages/edit';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
+import Tokens from './pages/tokens';
 
 
 function App() {
@@ -15,9 +16,9 @@ function App() {
       <Navbar bg="dark" expand="lg" variant="dark">
         <Container>
           <Navbar.Brand href="/">My Blog!</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
           <Nav className="me-auto">
-            <Nav.Link href="/posts/new">New</Nav.Link>
+          <Nav.Link href="/tokens" >Tokens</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
@@ -26,6 +27,7 @@ function App() {
         <Route path="/posts/:id" element={<Post />} />
         <Route path="/posts/new" element={<Create />} />
         <Route path="/posts/:id/edit" element={<Edit />} />
+        <Route path="/tokens" element={<Tokens />} />
       </Routes>
     </>
   );
